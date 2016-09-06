@@ -45,10 +45,10 @@ class PlaygroundLayout {
             }
         });
 
-        //this.createVideoSearchTab();
+        // this.createVideoSearchTab();
         this.createEditorTab(editorParams, compilerParams);
         this.createFileBrowserTab();
-        //this.createManPageSearchTab(openManPageCallback);
+        // this.createManPageSearchTab(openManPageCallback);
     }
 
     createEditorTab(editorParams, compilerParams) {
