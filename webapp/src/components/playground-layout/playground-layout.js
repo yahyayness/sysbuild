@@ -46,8 +46,8 @@ class PlaygroundLayout {
         });
 
         // this.createVideoSearchTab();
-        this.createEditorTab(editorParams, compilerParams);
         this.createFileBrowserTab();
+        this.createEditorTab(editorParams, compilerParams);
         // this.createManPageSearchTab(openManPageCallback);
     }
 
