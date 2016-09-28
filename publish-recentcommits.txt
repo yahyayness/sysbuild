@@ -1,5 +1,5 @@
+402319f new line missing
+bfa5bcf ajout bouton save
+0a67002 ajout des packages npm pour le gulp build
+6e4cef8 ajout standard c11 sur la ligne de build enlever la librairie de math
 c5b049f petite correction Build qui sort de l'écran
-2c535fc transformation du terminal de canvas vers table
-e8c97b0 bug resize
-b316e56 build error
-5b1e0d8 debug + premières modif layout
