@@ -1,5 +1,5 @@
+4e0f775 but lint
+110f7e2 bug auto include headers
 402319f new line missing
 bfa5bcf ajout bouton save
 0a67002 ajout des packages npm pour le gulp build
-6e4cef8 ajout standard c11 sur la ligne de build enlever la librairie de math
-c5b049f petite correction Build qui sort de l'écran
