@@ -1,7 +1,7 @@
 import ko from 'knockout';
 import crossroads from 'crossroads';
 import hasher from 'hasher';
-import tracker from 'app/ga-tracker';
+// import tracker from 'app/ga-tracker';
 
 // This module configures crossroads.js, a routing library. If you prefer, you
 // can use any other routing library (or none at all) as Knockout is designed to
@@ -20,7 +20,7 @@ class Router {
         crossroads.addRoute('', (requestParams) => {
             // TODO: Remove redirection once home page is ready
             // this.currentRoute(ko.utils.extend(requestParams, { page: 'home-page' }));
-            hasher.replaceHash('lessons');
+            hasher.replaceHash('VM');
         });
 
         crossroads.addRoute('about', (requestParams) => {
@@ -47,14 +47,14 @@ class Router {
             this.currentRoute(ko.utils.extend(requestParams, { page: 'play-activity-page' }));
         });
 
-        crossroads.routed.add(() => {
+/*        crossroads.routed.add(() => {
             tracker.trackPageView();
         });
 
         crossroads.bypassed.add(() => {
             tracker.trackPageView();
             this.currentRoute({ page: 'not-found-page' });
-        });
+        });*/
 
         // Activate Crossroads
         crossroads.normalizeFn = crossroads.NORM_AS_OBJECT;

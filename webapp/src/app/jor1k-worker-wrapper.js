@@ -5,12 +5,13 @@
  * RequireJS is included directly during build.
  */
 
+// see https://github.com/guybedford/amd-loader/issues/4
+const window = self; // returns a reference to the WorkerGlobalScope
+
 /* global importScripts, require */
 importScripts('../bower_modules/requirejs/require.js');
 importScripts('require.config.js');
 require.config({ baseUrl: '../' });
 
-// see https://github.com/guybedford/amd-loader/issues/4
-const window = self; // returns a reference to the WorkerGlobalScope
 
 require(['cjs!jor1k/worker/worker']);
