@@ -98,15 +98,14 @@ class SysRuntime {
                     'usr/bin/as',
                     'usr/include/stdio.h',
                 ], // list of files which should be loaded immediately after they appear in the filesystem
-                lazyloadimages: [
-                ], // list of automatically loaded images after the basic filesystem has been loaded
+                lazyloadimages: [], // list of automatically loaded images after the basic filesystem has been loaded
             },
-            terms: [termTTY0, termTTY1],   // canvas ids for the terminals
-            statsid: 'vm-stats',  // element id for displaying VM statistics
+            terms: [termTTY0, termTTY1], // canvas ids for the terminals
+            statsid: 'vm-stats', // element id for displaying VM statistics
             memorysize: 32, // in MB, must be a power of two
             path: jor1kBaseFsUrl, // kernelURL and fsURLs are relative to this path
             worker: new Worker(jor1kWorkerUrl),
-			relayURL: 'wss://relay.widgetry.org/',
+            //relayURL: 'wss://relay.widgetry.org/',
         };
 
         this.jor1kgui = new Jor1k(jor1kparameters);
