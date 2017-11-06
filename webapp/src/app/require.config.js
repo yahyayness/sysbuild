@@ -54,12 +54,12 @@ require.config({
             location: "bower_modules/jor1k/js",
         },
     ],
-    map: {
-        // The 'system.js' file in the jor1k worker source 'require()'s the 'or1k' and 'riscv'
-        // directories to load 'or1k/index.js' and 'riscv/index.js', respectively. Such a require
+     map: {
+        // The 'init_openrisc.js' file in the jor1k worker source 'require()'s the 'or1k'
+        // directory to load 'or1k/index.js'. Such a require
         // call is supported in CommonJS environments, but not in AMD/RequireJS. The following
         // mapping rules convert the directory requires into the correct module IDs to be loaded.
-        "jor1k/worker/system": {
+        "jor1k/worker/init_openrisc": {
             // the following rule ensures that require('./or1k') will load './or1k/index.js'
             "jor1k/worker/or1k": "jor1k/worker/or1k/index",
 
@@ -68,13 +68,15 @@ require.config({
             // mapped to 'jor1k/worker/or1k/index/index'
             "jor1k/worker/or1k/index": "jor1k/worker/or1k/index",
 
-             // similar to above
-            "jor1k/worker/riscv": "jor1k/worker/riscv/index",
-            "jor1k/worker/riscv/index": "jor1k/worker/riscv/index",
-
-            // the following rule prevents 'jor1k/worker/riscv/htif' from being incorrectly
-            // mapped to 'jor1k/worker/riscv/index/htif'
-            "jor1k/worker/riscv/htif": "jor1k/worker/riscv/htif",
         },
+         // similar to above
+         "jor1k/worker/init_riscv": {
+             "jor1k/worker/riscv": "jor1k/worker/riscv/index",
+             "jor1k/worker/riscv/index": "jor1k/worker/riscv/index",
+             // the following rule prevents 'jor1k/worker/riscv/htif' from being incorrectly
+             // mapped to 'jor1k/worker/riscv/index/htif'
+             "jor1k/worker/riscv/htif": "jor1k/worker/riscv/htif",
+         },
+
     },
 });

@@ -9,9 +9,11 @@
 const window = self; // returns a reference to the WorkerGlobalScope
 
 /* global importScripts, require */
+/* eslint-disable import/no-dynamic-require */
+
+
 importScripts('../bower_modules/requirejs/require.js');
 importScripts('require.config.js');
 require.config({ baseUrl: '../' });
-
 
 require(['cjs!jor1k/worker/worker']);

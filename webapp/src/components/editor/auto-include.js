@@ -62,8 +62,10 @@ class AutoIncluder {
         this.browser.saveActiveFile();
         const updates = {};
         for (const file in this.browser.metaDataPathLookUp) { // eslint-disable-line no-restricted-syntax
-            if (file.length === 0 || (file.indexOf('.h') < 0 && file.indexOf('.c') < 0)) continue;
-            // this.loadFile(file); //THERE IS A BUG HERE, I comment this line ! (Remi SHARROCK)
+            if (file.length === 0 || (file.indexOf('.h') < 0 && file.indexOf('.c') < 0)) {
+                continue; // eslint-disable-line no-continue
+            }
+            this.loadFile(file);
             const getter = textGetter();
             const text = getter().split('\n');
             const session = this.editor.aceEditor.session;
@@ -78,7 +80,6 @@ class AutoIncluder {
                     if (syntax === '#include' || syntax === '#define') {
                         const current = tokens.map((token) => token.value); // eslint-disable-line no-shadow
                         currentHeaders.push(current.join(''));
-                        return;
                     } else if (syntax in includeMap) {
                         includeMap[syntax].forEach((header) => {
                             if (headers.indexOf(header) === -1 && currentHeaders.indexOf(header) === -1) {

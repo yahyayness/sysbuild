@@ -29,18 +29,6 @@ const busyNotific8Options = {
     icon: 'info-circled'
 };
 
-const savingNotif = {
-    life: 1000,
-    theme: 'lemon',
-    icon: 'info-circled'
-};
-
-const savingOK = {
-    life: 1000,
-    theme: 'lime',
-    icon: 'check-mark-2'
-};
-
 const confirmNotific8Options = {
     life: 5000,
     theme: 'lime',
@@ -100,7 +88,8 @@ class Filebrowser {
 
             // Save Hotkey
             this.editor.addKeyboardCommand(
-                'saveFile', {
+                'saveFile',
+                {
                     win: 'Ctrl-S',
                     mac: 'Command-S',
                     sender: 'editor|cli'
@@ -226,24 +215,24 @@ class Filebrowser {
                     } else if (action === 'clone') {
                         bootbox.dialog({
                             title: 'Clone a GitHub repo into \'' + itemName + '\'...',
-                            message: '<div>' +
-                                '<div class="row">' +
-                                '<label class="col-sm-2 control-label"><small>Username (optional)</small></label>' +
-                                '<div class="col-sm-4">' +
-                                '<input id="githubUsername" class="form-control input-sm" type="text" maxlen=256>' +
-                                '</div>' +
-                                '<label class="col-sm-2 control-label"><small>Password</small></label>' +
-                                '<div class="col-sm-4">' +
-                                '<input id="githubPassword" class="form-control input-sm" type="password" maxlen=256>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="row">' +
-                                '<label class="col-sm-2 control-label"><small>Repo URI</small></label>' +
-                                '<div class="col-sm-10">' +
-                                '<input id="githubRepo" class="form-control input-sm" type="text" maxlen=256 placeholder="username/repo-name">' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>',
+                            message: '<div>'
+                                +     '<div class="row">'
+                                +         '<label class="col-sm-2 control-label"><small>Username (optional)</small></label>'
+                                +         '<div class="col-sm-4">'
+                                +             '<input id="githubUsername" class="form-control input-sm" type="text" maxlen=256>'
+                                +         '</div>'
+                                +         '<label class="col-sm-2 control-label"><small>Password</small></label>'
+                                +         '<div class="col-sm-4">'
+                                +             '<input id="githubPassword" class="form-control input-sm" type="password" maxlen=256>'
+                                +         '</div>'
+                                +     '</div>'
+                                +     '<div class="row">'
+                                +         '<label class="col-sm-2 control-label"><small>Repo URI</small></label>'
+                                +         '<div class="col-sm-10">'
+                                +             '<input id="githubRepo" class="form-control input-sm" type="text" maxlen=256 placeholder="username/repo-name">'
+                                +         '</div>'
+                                +     '</div>'
+                                + '</div>',
                             buttons: {
                                 success: {
                                     label: 'Clone',
@@ -275,24 +264,24 @@ class Filebrowser {
                     } else if (action === 'push') {
                         bootbox.dialog({
                             title: 'Push \'' + itemName + '\' to a GitHub repo...',
-                            message: '<div>' +
-                                '<div class="row">' +
-                                '<label class="col-sm-2 control-label"><small>Username</small></label>' +
-                                '<div class="col-sm-4">' +
-                                '<input id="githubUsername" class="form-control input-sm" type="text" maxlen=256>' +
-                                '</div>' +
-                                '<label class="col-sm-2 control-label"><small>Password</small></label>' +
-                                '<div class="col-sm-4">' +
-                                '<input id="githubPassword" class="form-control input-sm" type="password" maxlen=256>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="row">' +
-                                '<label class="col-sm-2 control-label"><small>Repo Name</small></label>' +
-                                '<div class="col-sm-10">' +
-                                '<input id="githubSaveRepo" class="form-control input-sm" type="text" maxlen=256 placeholder="sysprog-save">' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>',
+                            message: '<div>'
+                                +     '<div class="row">'
+                                +         '<label class="col-sm-2 control-label"><small>Username</small></label>'
+                                +         '<div class="col-sm-4">'
+                                +             '<input id="githubUsername" class="form-control input-sm" type="text" maxlen=256>'
+                                +         '</div>'
+                                +         '<label class="col-sm-2 control-label"><small>Password</small></label>'
+                                +         '<div class="col-sm-4">'
+                                +             '<input id="githubPassword" class="form-control input-sm" type="password" maxlen=256>'
+                                +         '</div>'
+                                +     '</div>'
+                                +     '<div class="row">'
+                                +         '<label class="col-sm-2 control-label"><small>Repo Name</small></label>'
+                                +         '<div class="col-sm-10">'
+                                +             '<input id="githubSaveRepo" class="form-control input-sm" type="text" maxlen=256 placeholder="sysprog-save">'
+                                +         '</div>'
+                                +     '</div>'
+                                + '</div>',
                             buttons: {
                                 success: {
                                     label: 'Push',
@@ -396,15 +385,15 @@ class Filebrowser {
                     // open
                     $curr.data('status', 'opened');
 
-                    if (this.directoryState.indexOf(data.path) === -1) {
+                    if (this.directoryState.indexOf(data.path) === -1)  {
                         this.directoryState.push(data.path);
                         this.directoryState.sort();
                     }
 
                     $curr
-                        .find('i')
-                        .removeClass(iconClass.closed)
-                        .addClass(iconClass.opened);
+                    .find('i')
+                    .removeClass(iconClass.closed)
+                    .addClass(iconClass.opened);
 
                     children = this.fs.getDirectoryChildren(data.path);
                     this.assignChildren(data, children, data.path);
@@ -429,12 +418,8 @@ class Filebrowser {
                 }
             });
 
-            // make program.c if not exists
-            try {
-                fs.readFileSync('/program.c');
-            } catch (e) {
-                fs.writeFile('/program.c', new Buffer(this.editor.getText(), 'binary'));
-            }
+            // overwrite program.c with contents of the editor for the current play activity
+            fs.writeFile('/program.c', new Buffer(this.editor.getText(), 'binary'));
 
             // init
             this.init();
@@ -607,34 +592,15 @@ class Filebrowser {
     }
 
     saveActiveFile() {
-        const activePathSave = this.activePath;
         const editorContent = this.editor.getText();
         const itemData = this.metaDataPathLookUp[this.activePath];
 
         if (itemData) {
-            // Delete to save the new date/time
-            this.fs.deleteFile(itemData.path);
             this.fs.writeFile(itemData.path, editorContent);
-            // console.log("REMI settimeout");
-            setTimeout(() => {
-                this.refreshEditorAfterSave(activePathSave);
-            }, 500);
-            $.notific8('Saving...', savingNotif);
         } else {
             this.activePath = '';
             $.notific8('Error occurred while saving the file', warningNotific8Options);
         }
-    }
-
-    refreshEditorAfterSave(activePathSave) {
-        // refresh editor
-        const content = this.fs.readFileSync(activePathSave).toString('binary');
-        // console.log("REMI content = " + content);
-        this.makeActive(activePathSave);
-        // console.log("REMI makeActive ");
-        this.editor.setFile(activePathSave, this.metaDataPathLookUp[activePathSave].name, content);
-        // console.log("REMI setFile");
-        $.notific8('Saving OK', savingOK);
     }
 
     makeActive(itemPath) {
@@ -710,11 +676,11 @@ class Filebrowser {
     getItemDOM(data) {
         let element;
         if (data.isDirectory) {
-            element = '<div id="' + data.id + '" data-id="' + data.id + '" data-status="closed" class="item folder" style="margin-left:' + data.depth * this.indent +
+            element = '<div id="' + data.id + '" data-id="' + data.id + '" data-status="closed" class="item folder" style="margin-left:' + (data.depth * this.indent) +
                 'px;"><span class="item-icon"><i class="glyphicon glyphicon-chevron-right"></i></span>' + data.name + '</div>';
         } else {
-            element = '<div id="' + data.id + '"data-id="' + data.id + '" class="item file" style="margin-left:' + data.depth * this.indent +
-                'px;"><span class="item-icon"></span>' + data.name + '</div>';
+            element = '<div id="' + data.id + '"data-id="' + data.id + '" class="item file" style="margin-left:' + (data.depth * this.indent) +
+            'px;"><span class="item-icon"></span>' + data.name + '</div>';
         }
         return element;
     }

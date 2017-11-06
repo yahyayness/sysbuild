@@ -2,7 +2,7 @@
 
 import ExpectTTY from 'app/expect-tty';
 import GccOutputParser from 'app/gcc-output-parser';
-import * as Jor1k from 'cjs!jor1k/master/master';
+import Jor1k from 'cjs!jor1k/master/master';
 import LinuxTerm from 'cjs!jor1k/plugins/terminal-linux';
 import { jor1kBaseFsUrl, jor1kWorkerUrl } from 'app/config';
 import SysFileSystem from 'app/sys-filesystem';
@@ -80,7 +80,7 @@ class SysRuntime {
 
         const jor1kparameters = {
             system: {
-                kernelURL: 'vmlinux.bin.bz2', // kernel image
+                kernelURL: 'kernel/vmlinux.bin.bz2', // kernel image
                 memorysize: 32, // in MB, must be a power of two
                 cpu: 'asm', // short name for the cpu to use
                 ncores: 1,
@@ -88,7 +88,7 @@ class SysRuntime {
             fs: {
                 basefsURL: 'basefs-compile.json', // json file with the basic filesystem configuration.
                 // json file with extended filesystem informations. Loaded after the basic filesystem has been loaded.
-                extendedfsURL: '../fs.json',
+                extendedfsURL: 'fs.json',
                 earlyload: [
                     'usr/bin/gcc',
                     'usr/libexec/gcc/or1k-linux-musl/4.9.0/cc1',
@@ -98,14 +98,15 @@ class SysRuntime {
                     'usr/bin/as',
                     'usr/include/stdio.h',
                 ], // list of files which should be loaded immediately after they appear in the filesystem
-                lazyloadimages: [], // list of automatically loaded images after the basic filesystem has been loaded
+                lazyloadimages: [
+                ], // list of automatically loaded images after the basic filesystem has been loaded
             },
-            terms: [termTTY0, termTTY1], // canvas ids for the terminals
-            statsid: 'vm-stats', // element id for displaying VM statistics
+            terms: [termTTY0, termTTY1],   // canvas ids for the terminals
+            statsid: 'vm-stats',  // element id for displaying VM statistics
             memorysize: 32, // in MB, must be a power of two
             path: jor1kBaseFsUrl, // kernelURL and fsURLs are relative to this path
             worker: new Worker(jor1kWorkerUrl),
-            //relayURL: 'wss://relay.widgetry.org/',
+            relayURL: 'wss://relay.widgetry.org/',
         };
 
         this.jor1kgui = new Jor1k(jor1kparameters);
@@ -264,7 +265,7 @@ class SysRuntime {
     sendKeys(tty, text, expect, success, cancel) {
         let expectResult = null;
         const data = text.split('').map((c) => {
-            /* jshint bitwise: false */
+            // eslint-disable-next-line no-bitwise
             return c.charCodeAt(0) >>> 0;
         });
         this.jor1kgui.Pause(false);
