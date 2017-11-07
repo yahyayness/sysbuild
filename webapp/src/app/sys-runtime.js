@@ -10,7 +10,9 @@ import SysFileSystem from 'app/sys-filesystem';
 // Encapsulates the virtual machine interface
 class SysRuntime {
     constructor() {
+/*
         this.bootFinished = false;
+
         this.tty0ready = false;
         this.tty1ready = false;
 
@@ -74,7 +76,7 @@ class SysRuntime {
                 this.sendKeys('tty1', 'stty -clocal crtscts -ixoff\necho boot2ready-$?\n', 'boot2ready-0', onTTY1RootLogin);
             }
         };
-
+/**/
         const termTTY0 = new LinuxTerm('tty0');
         const termTTY1 = new LinuxTerm('tty1');
 
@@ -110,16 +112,29 @@ class SysRuntime {
         };
 
         this.jor1kgui = new Jor1k(jor1kparameters);
-
+/*
         termTTY0.SetCharReceiveListener(this.putCharTTY0Listener);
         termTTY1.SetCharReceiveListener(this.putCharTTY1Listener);
 
         // Wait for terminal prompts
         this.sendKeys('tty0', '', '~ $', onTTY0Login);
         this.sendKeys('tty1', '', '~ #', onTTY1Login);
+        /**/
         return this;
     }
+    ready(){
+        console.log("ready()");
+}
 
+    addListener(eventname, fn) {
+        console.log("addListener("+eventname+","+fn+")");
+    }
+
+    focusTerm(tty){
+        console.log("focusTerm("+tty+")");
+    }
+
+/*
     ready() {
         return this.bootFinished;
     }
@@ -275,6 +290,7 @@ class SysRuntime {
         this.jor1kgui.message.Send(tty, data);
         return expectResult;
     }
+    /**/
 }
 
 // SysRuntime is meant to be used as a singleton
