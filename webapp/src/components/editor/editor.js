@@ -202,7 +202,7 @@ class Editor {
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             limit: 10,
             prefetch: {
-                url: 'https://cs-education.github.io/sysassets/man_pages/sys_man_page_index.min.json'
+                url: 'http://localhost:8080/sysassets/man_pages/sys_man_page_index.min.json'
             }
         });
         manPageTokens.initialize();
