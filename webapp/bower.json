@@ -29,7 +29,8 @@
     "bootstrap-contextmenu": "^0.3.4",
     "bootbox.js": "^4.4.0",
     "github-api": "~0.10.7",
-    "Stuk/jszip": "3.0.0"
+    "Stuk/jszip": "3.0.0",
+    "file-saver": "^2.0.2"
   },
   "devDependencies": {},
   "resolutions": {
