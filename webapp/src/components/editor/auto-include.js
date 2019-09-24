@@ -20,8 +20,8 @@ class AutoIncluder {
     createMapping() {
         const self = this;
         const includeMap = {};
-        const syscalls = 'https://cs-education.github.io/sysassets/man_pages/syscall_metadata.min.json';
-        const libcalls = 'https://cs-education.github.io/sysassets/man_pages/headers.min.json';
+        const syscalls = 'http://localhost:8080/sysassets/man_pages/syscall_metadata.min.json';
+        const libcalls = 'http://localhost:8080/sysassets/man_pages/headers.min.json';
         $.getJSON(syscalls, (data) => {
             data.forEach((element) => {
                 element.functions.forEach((func) => {
